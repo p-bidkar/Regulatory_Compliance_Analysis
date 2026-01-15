@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regcomply"
+version = "0.1.0"
+description = "Multi-agent regulatory compliance document analysis"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph>=0.2.0",
+    "langchain-core>=0.3.0",
+    "llama-index>=0.11.0",
+    "llama-index-vector-stores-chroma>=0.2.0",
+    "llama-index-embeddings-huggingface>=0.2.0",
+    "chromadb>=0.5.0",
+    "streamlit>=1.39.0",
+    "python-dotenv>=1.0.0",
+    "openai>=1.54.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.8.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
