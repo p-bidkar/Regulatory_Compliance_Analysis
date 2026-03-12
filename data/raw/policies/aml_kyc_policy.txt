@@ -1,0 +1,125 @@
+APEX FINANCIAL SERVICES, INC.
+ANTI-MONEY LAUNDERING AND KNOW YOUR CUSTOMER POLICY
+
+Policy Number: CMP-002
+Version: 5.1
+Effective Date: January 1, 2025
+Last Reviewed: December 15, 2024
+Owner: Chief Compliance Officer / BSA Officer
+Approved By: Board of Directors
+
+1. PURPOSE AND SCOPE
+
+This policy establishes the Firm's Anti-Money Laundering (AML) and Know Your Customer (KYC) program in compliance with the Bank Secrecy Act (BSA), the USA PATRIOT Act, FINRA Rule 3310, and applicable SEC regulations. The policy applies to all business units, employees, and contractors of Apex Financial Services, Inc.
+
+The Firm is committed to detecting, preventing, and reporting money laundering, terrorist financing, and other financial crimes. Every employee shares responsibility for maintaining the integrity of the Firm's AML program.
+
+2. REGULATORY FRAMEWORK
+
+2.1 Bank Secrecy Act
+The BSA requires financial institutions to assist U.S. government agencies in detecting and preventing money laundering. The Firm must maintain an effective AML program with internal controls, independent testing, a designated compliance officer, and ongoing employee training.
+
+2.2 USA PATRIOT Act
+Section 326 of the USA PATRIOT Act requires financial institutions to implement a Customer Identification Program (CIP). The Firm must verify the identity of customers opening new accounts and maintain records of the information used.
+
+2.3 FinCEN Requirements
+The Financial Crimes Enforcement Network (FinCEN) requires the Firm to file Suspicious Activity Reports (SARs) within 30 calendar days of detecting a suspicious transaction, and Currency Transaction Reports (CTRs) for cash transactions exceeding $10,000.
+
+2.4 OFAC Sanctions
+The Firm must screen all customers and transactions against the Office of Foreign Assets Control (OFAC) Specially Designated Nationals (SDN) list and all applicable sanctions programs.
+
+3. CUSTOMER IDENTIFICATION PROGRAM
+
+3.1 Required Identifying Information
+Before opening any account, the Firm must collect the following minimum information:
+
+For individuals: full legal name, date of birth, residential address (not a P.O. box), and government-issued identification number (Social Security Number for U.S. persons, passport number for foreign nationals).
+
+For legal entities: full legal name, principal place of business address, Employer Identification Number (EIN) or equivalent tax identification number, and the identity of beneficial owners holding 25% or more ownership interest.
+
+3.2 Beneficial Ownership Requirements
+In accordance with FinCEN's Customer Due Diligence Rule, the Firm must identify and verify the identity of beneficial owners of legal entity customers. Beneficial owners include any natural person who directly or indirectly owns 25% or more of the equity interests of a legal entity, and one individual who controls the entity (the "control prong").
+
+3.3 Identity Verification
+The Firm must verify customer identity through documentary and non-documentary methods. Documentary verification includes government-issued photo identification, articles of incorporation, partnership agreements, and trust documents. Non-documentary verification includes third-party database checks, credit bureau inquiries, and OFAC screening.
+
+3.4 Verification Timing
+Identity verification must be completed before account opening for most account types. In limited circumstances, verification may be completed within a reasonable time after account opening, provided the Firm applies appropriate risk mitigation measures and the account type poses low money laundering risk.
+
+4. CUSTOMER DUE DILIGENCE
+
+4.1 Risk-Based Approach
+The Firm uses a risk-based approach to customer due diligence. All customers are assigned a risk rating of Low, Medium, or High based on factors including customer type, geographic location, product and service usage, transaction patterns, and industry.
+
+4.2 Standard Due Diligence
+Standard due diligence applies to Low and Medium risk customers and includes initial identity verification, standard account monitoring, and periodic review based on risk rating (annually for Medium risk, every three years for Low risk).
+
+4.3 Enhanced Due Diligence
+Enhanced due diligence (EDD) is required for High risk customers, including Politically Exposed Persons (PEPs), customers in high-risk jurisdictions identified by the Financial Action Task Force (FATF), customers with complex ownership structures, and customers in high-risk industries such as money services businesses, cannabis-related businesses, and virtual asset service providers.
+
+EDD measures include senior management approval for account opening, collection of source of wealth and source of funds documentation, more frequent account reviews (at minimum annually), and enhanced transaction monitoring thresholds.
+
+4.4 Politically Exposed Persons
+PEPs are current or former senior foreign political figures, their immediate family members, and close associates. All PEP accounts require senior management approval, enhanced due diligence, and annual review. Domestic PEPs must be risk-assessed and subject to enhanced scrutiny where appropriate.
+
+5. ONGOING MONITORING
+
+5.1 Transaction Monitoring
+The Firm uses an automated transaction monitoring system to detect unusual or suspicious activity. The system applies rules and scenarios based on transaction type, amount, frequency, counterparty, and geographic factors. Alerts are reviewed by the AML Compliance team within five business days of generation.
+
+5.2 Alert Disposition
+All alerts generated by the transaction monitoring system must be documented with the analyst's review notes and disposition decision. Alerts cleared as non-suspicious must include a documented rationale. Alerts escalated to SAR review must be handled in accordance with Section 6 of this policy.
+
+5.3 Periodic Customer Reviews
+Customer accounts are subject to periodic review on a schedule determined by their risk rating. Reviews must assess whether the customer's profile remains consistent with their stated business purpose and whether any adverse information has emerged.
+
+5.4 Negative News Screening
+The Firm screens all customers against negative news databases on an ongoing basis. Adverse findings must be reviewed by the AML team within 10 business days and the customer's risk rating must be updated if appropriate.
+
+6. SUSPICIOUS ACTIVITY REPORTING
+
+6.1 Reporting Obligation
+The Firm must file a SAR with FinCEN when it knows, suspects, or has reason to suspect that a transaction involves funds from illegal activity, is designed to evade BSA requirements, lacks a lawful purpose, or involves a customer who does not fit the profile of a legitimate business.
+
+6.2 SAR Threshold
+SARs must be filed for transactions aggregating $5,000 or more involving an identified suspect, or $25,000 or more regardless of suspect identification.
+
+6.3 SAR Filing Timeline
+SARs must be filed within 30 calendar days of the initial detection of suspicious activity. If additional investigation is needed to identify the subject, the deadline is extended to 60 calendar days.
+
+6.4 SAR Confidentiality
+The existence of a SAR filing is strictly confidential. Employees may not disclose to any person, including the subject of the SAR, that a SAR has been filed or that a SAR filing is contemplated. Violation of SAR confidentiality is a federal crime.
+
+6.5 Currency Transaction Reports
+CTRs must be filed within 15 calendar days for cash transactions exceeding $10,000. Structuring transactions to avoid CTR reporting thresholds is prohibited and must itself be reported.
+
+7. OFAC SANCTIONS COMPLIANCE
+
+7.1 Screening Requirements
+The Firm must screen all new customers and counterparties against the OFAC SDN list and all applicable sanctions lists prior to onboarding. Ongoing screening must be conducted at minimum monthly for all existing customers.
+
+7.2 Blocked Transactions
+Any transaction involving a sanctioned party must be blocked and reported to OFAC within 10 business days. Blocked funds must be held in a segregated account and reported on the annual OFAC Form TDF 90-22.50.
+
+7.3 Escalation
+Any potential OFAC match must be escalated to the Compliance Department within one business day. The Compliance Department must complete review of potential matches within five business days.
+
+8. PROGRAM TESTING AND AUDIT
+
+8.1 Independent Testing
+The AML program must be independently tested at least annually by the Internal Audit Department or a qualified third party. The testing must assess the adequacy of the Firm's AML policies, procedures, and controls.
+
+8.2 Audit Reports
+Audit reports must be provided to the Board of Directors or its Risk and Compliance Committee within 30 days of completion. Identified deficiencies must have documented remediation plans with target completion dates.
+
+9. TRAINING
+
+All employees must complete AML/BSA training annually. Employees in customer-facing roles must complete additional role-specific training on recognizing and escalating suspicious activity. Training records must be maintained for a minimum of six years.
+
+10. RECORDKEEPING
+
+All records related to the AML program, including CIP documentation, KYC files, SAR filings, CTR filings, OFAC screening results, and transaction monitoring records, must be retained in accordance with the Firm's Records Retention and Management Policy (CMP-001) for a minimum of five years from the date of creation.
+
+11. CONSEQUENCES OF NON-COMPLIANCE
+
+Violations of this policy may result in disciplinary action up to and including termination, civil monetary penalties, criminal prosecution, and reputational harm. BSA violations can result in civil penalties of up to $25,000 per day and criminal fines of up to $500,000 per violation.

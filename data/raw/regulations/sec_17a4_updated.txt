@@ -1,0 +1,146 @@
+SECURITIES AND EXCHANGE COMMISSION
+17 CFR Part 240
+[Release No. 34-97142; File No. S7-09-25]
+RIN 3235-AN20
+
+RETENTION OF RECORDS BY BROKERS AND DEALERS
+(AMENDED VERSION - Effective March 1, 2026)
+
+AGENCY: Securities and Exchange Commission.
+ACTION: Final Rule.
+
+SUMMARY: The Securities and Exchange Commission is adopting amendments to Rule 17a-4 under the Securities Exchange Act of 1934. These amendments modernize the rule to address developments in technology, cloud computing, and cybersecurity risks affecting the recordkeeping practices of broker-dealers. Key changes include: extending the retention period for electronic communications records from three years to five years; establishing enhanced certification and monitoring requirements for cloud-based recordkeeping systems; imposing new cybersecurity incident reporting obligations for breaches affecting regulatory records; and requiring real-time audit trail capabilities for all records subject to this rule.
+
+EFFECTIVE DATE: March 1, 2026. The Commission is providing a compliance phase-in period. Existing cloud storage arrangements must be brought into compliance by September 1, 2026.
+
+CONTACT: Office of Trading and Markets, Securities and Exchange Commission, 100 F Street NE, Washington, DC 20549.
+
+SECTION 1. GENERAL REQUIREMENTS
+
+1.1 Applicability
+Every member, broker, and dealer subject to this section shall preserve for a period of not less than three years, the first two years in an accessible place, the following records:
+
+(a) All records required to be made pursuant to paragraphs (a)(1) through (a)(18) of Rule 17a-3.
+
+(b) All trial balances, computations of aggregate indebtedness and net capital, all supporting schedules prepared in connection with such computations, work papers, and all other records required to demonstrate the accuracy of such computations.
+
+(c) All check books, bank statements, cancelled checks, and cash reconciliations.
+
+(d) All bills receivable or payable, confirmations, and all other records required to be made pursuant to Rule 17a-3 which are not described in paragraphs (b)(1) through (b)(6) of this section.
+
+1.2 Six-Year Retention Requirements
+Every member, broker, and dealer subject to this section shall preserve for a period of not less than six years, the first two years in an accessible place:
+
+(a) All partnership articles, articles of incorporation, minute books, and stock certificate books of the member, broker, or dealer.
+
+(b) All Forms BD and amendments thereto filed with the Commission.
+
+(c) All written agreements or other documents which are subject to Rule 17a-3(a)(10).
+
+(d) All records required pursuant to Rule 17a-3(a)(15) and (16) relating to customer complaints.
+
+SECTION 2. ELECTRONIC STORAGE REQUIREMENTS
+
+2.1 Non-Rewriteable, Non-Erasable Format
+Any electronic storage media utilized shall meet the following requirements:
+
+(a) The electronic storage media must preserve the records exclusively in a non-rewriteable, non-erasable format. This requirement is commonly referred to as a WORM (Write Once Read Many) requirement.
+
+(b) The member, broker, or dealer shall verify automatically the quality and accuracy of the electronic storage media recording process.
+
+(c) The member, broker, or dealer shall serialize the original and, if applicable, duplicate units of storage media, and shall time-date for the required period of retention the information placed on such electronic storage media.
+
+2.2 Duplicate Copy Requirement
+Members, brokers, and dealers that employ electronic storage media shall:
+
+(a) Maintain, keep current, and provide promptly to the Commission or any self-regulatory organization of which it is a member, upon request, a listing of the organization responsible for maintaining and enforcing a designated third-party escrow arrangement.
+
+(b) Store a duplicate copy of the electronic records in a separate facility. The duplicate copy must be stored in a geographically separate data center located at minimum 100 miles from the primary storage location. Co-location within the same data center facility or campus, or the use of availability zones within a single cloud provider region, does not satisfy this requirement.
+
+(c) Ensure that the electronic records are indexed and that the index is available to the Commission upon request.
+
+(d) [NEW] Verify the integrity of the duplicate copy through automated checksums or cryptographic hash verification on a monthly basis. Results of such verification must be logged and retained as part of the firm's supervisory records.
+
+2.3 Cloud-Based Recordkeeping Systems
+
+(a) [NEW] Members, brokers, and dealers that utilize cloud-based storage systems for regulatory records must ensure that such systems comply with all requirements of this section, including the WORM format requirement, duplicate copy requirement, and all accessibility requirements.
+
+(b) [NEW] Cloud service providers used for regulatory recordkeeping must, at a minimum, hold FedRAMP Moderate authorization or demonstrate an equivalent level of security compliance as determined by the Commission. The member, broker, or dealer must obtain and maintain a current certification from each cloud provider attesting to its compliance with the requirements of this section. Certifications must be obtained annually and must be made available to the Commission upon request.
+
+(c) [NEW] Prior to using a cloud-based system for regulatory recordkeeping, a member, broker, or dealer must conduct and document a risk assessment addressing: (i) data residency (all records must be stored within the United States unless an exception is approved in writing by the Commission); (ii) vendor lock-in and data portability (the firm must be able to export all records in an industry-standard format within 72 hours of a Commission request); (iii) financial stability of the cloud provider; and (iv) the provider's incident response and notification capabilities.
+
+2.4 Third-Party Escrow Arrangements
+Members, brokers, and dealers that employ electronic storage media may, in lieu of storing a duplicate copy at a separate facility, enter into an escrow arrangement with a designated third party who has access to and the ability to download information from the member's, broker's, or dealer's electronic storage media to any acceptable medium. Such escrow arrangement must provide that:
+
+(a) A copy of the escrow agreement be provided to the Commission or the designated examining authority upon request.
+
+(b) The third party provides the Commission or the designated examining authority with access to such records upon request.
+
+SECTION 3. ACCESSIBILITY REQUIREMENTS
+
+3.1 Prompt Access
+Every member, broker, and dealer subject to this section shall maintain records required to be maintained pursuant to this section so that such records are at all times available for immediate inspection and copying by the Commission, any state securities regulatory authority, and any self-regulatory organization of which it is a member.
+
+3.2 Index Requirement
+The member, broker, or dealer shall maintain and preserve, at minimum, a listing by type of media of the electronic storage media, together with a notation of the location of the storage media, the date stored, the time period covered by the records, and the location where the index to such records is stored.
+
+3.3 Output Capability
+The member, broker, or dealer shall have the capacity to produce immediately upon request by the Commission an output of the entire filing system to an external computer system or medium, such as magnetic tape, in an industry-standard format.
+
+3.4 [NEW] Real-Time Audit Trail
+Effective September 1, 2026, every member, broker, and dealer must maintain a real-time audit trail for all access to, or attempts to access, regulatory records. The audit trail must capture: user identity, system identifier, date and time of access, records accessed or requested, and whether access was granted or denied. Audit trail records are themselves subject to a three-year retention requirement.
+
+SECTION 4. COMMUNICATIONS RECORDS
+
+4.1 Business Communications - Extended Retention Period
+[AMENDED] Business-related communications made through electronic communications media, including but not limited to email, instant messages, text messages, collaboration platform messages (including but not limited to Slack, Microsoft Teams, and Bloomberg messaging), and social media messages transmitted or received by the member, broker, or dealer, and related to its business as such, shall be preserved for a period of five years. This represents an increase from the prior three-year requirement.
+
+4.2 Preservation Format
+Such records shall be preserved in a form that reflects the original message including header information, sender, recipient, date, and time stamps, as well as any attachments.
+
+4.3 Collaboration Platform Coverage
+[NEW] Records subject to this section include all business communications conducted on third-party collaboration and messaging platforms approved for business use by the member, broker, or dealer. Members, brokers, and dealers must have in place, as of the effective date of this amendment, written policies and procedures ensuring that communications on all approved platforms are captured and preserved in compliance with this section.
+
+4.4 Review and Supervision
+Records of business communications must be subject to review by appropriate supervisory personnel and must be preserved in a manner that is consistent with the requirements of this section.
+
+SECTION 5. CYBERSECURITY INCIDENT NOTIFICATION
+
+5.1 [NEW] Notification Obligation
+In the event of a cybersecurity incident that results in, or is reasonably likely to result in, unauthorized access to, or disruption of, records subject to this section, the member, broker, or dealer must notify the Commission within 24 hours of determining that the incident affects regulatory records.
+
+5.2 [NEW] Notification Content
+The notification required under Section 5.1 must include: (a) the date the incident was detected; (b) the type of records affected; (c) the estimated number of records affected; (d) the nature of the unauthorized access or disruption; (e) the steps being taken to remediate the incident; and (f) the name and contact information of a designated incident response contact.
+
+5.3 [NEW] Follow-Up Report
+Within 30 days of the initial notification, the member, broker, or dealer must submit a written report to the Commission describing the root cause of the incident, the full scope of records affected, all remediation steps completed, and any changes made to prevent recurrence.
+
+5.4 [NEW] Vendor Incidents
+The notification obligations in Sections 5.1 and 5.2 apply to incidents occurring at third-party storage providers or cloud service providers used for regulatory recordkeeping. Members, brokers, and dealers must contractually require such vendors to notify them of any security incident affecting the firm's records within four hours of the vendor's detection of such incident.
+
+SECTION 6. OBLIGATIONS UPON TERMINATION OF BUSINESS
+
+6.1 Transfer of Records
+In the event a member, broker, or dealer ceases to conduct business as such, such member, broker, or dealer shall arrange for the preservation of the records required to be maintained and preserved pursuant to this section for the remainder of the required retention period.
+
+6.2 Notification
+The member, broker, or dealer shall inform the Commission of the arrangements it has made for the preservation of records at least 30 days prior to ceasing business operations.
+
+6.3 Successor Obligations
+If any other member, broker, or dealer or other organization takes over the business of the former member, broker, or dealer, such successor shall preserve and maintain such records for the periods required under this section.
+
+SECTION 7. EXAMINATION AUTHORITY
+
+7.1 Commission Access
+Every member, broker, and dealer subject to this section shall, upon request of any representative of the Commission or of a registered securities association, make available promptly for examination or copying:
+
+(a) All records required to be maintained pursuant to this section.
+
+(b) All other books and records of the member, broker, or dealer.
+
+7.2 Response Timeline
+[AMENDED] Members, brokers, and dealers must produce requested records within a reasonable time. For electronically stored records, the standard response time for Commission requests is no more than two business days for records within the two-year accessible period, and no more than five business days for records outside the two-year accessible period. The prior standard of five business days for all electronic records is superseded by this amendment.
+
+SECTION 8. PENALTIES
+
+Violations of this rule may result in civil penalties of up to $10,000,000 per violation for entities and $1,000,000 per violation for natural persons, in addition to disgorgement and other equitable relief. Knowing and willful violations may be referred for criminal prosecution.

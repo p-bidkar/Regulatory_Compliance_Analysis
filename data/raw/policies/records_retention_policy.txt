@@ -1,0 +1,127 @@
+APEX FINANCIAL SERVICES, INC.
+RECORDS RETENTION AND MANAGEMENT POLICY
+
+Policy Number: CMP-001
+Version: 3.2
+Effective Date: January 1, 2025
+Last Reviewed: December 15, 2024
+Owner: Chief Compliance Officer
+Approved By: Board of Directors
+
+1. PURPOSE AND SCOPE
+
+This policy establishes the requirements for the creation, retention, storage, retrieval, and destruction of business records at Apex Financial Services, Inc. (the "Firm"). It applies to all business lines, departments, officers, employees, and contractors of the Firm.
+
+This policy is designed to ensure compliance with applicable federal and state recordkeeping requirements, including SEC Rule 17a-4 under the Securities Exchange Act of 1934, FINRA Rule 4511, and the Investment Advisers Act of 1940.
+
+2. REGULATORY FRAMEWORK
+
+The Firm is subject to the following primary recordkeeping regulations:
+
+2.1 SEC Rule 17a-4
+SEC Rule 17a-4 requires broker-dealers to preserve certain records in a non-rewriteable, non-erasable format for specified periods. The rule mandates that records be readily accessible for the first two years of the retention period and remain accessible for the balance of the retention period.
+
+2.2 FINRA Rule 4511
+FINRA Rule 4511 requires member firms to make and preserve books and records as required under FINRA Rules, the Exchange Act, and applicable Exchange Act rules. Records must be preserved in a format and media that comply with applicable regulations.
+
+2.3 Investment Advisers Act Rules 204-2
+For investment advisory activities, the Firm must retain records for a minimum of five years from the end of the fiscal year during which the last entry was made.
+
+3. RECORD RETENTION SCHEDULE
+
+3.1 Trade Records and Order Tickets
+All trade confirmations, order tickets, and related execution records must be retained for a minimum of three (3) years. Records must be kept in the principal office for the first two years and may be stored offsite for the remaining period.
+
+3.2 Customer Account Records
+Customer account opening documentation, KYC files, beneficial ownership records, and account statements must be retained for a minimum of six (6) years following the close of the account. This includes all customer identification program (CIP) records, risk assessments, and enhanced due diligence documentation.
+
+3.3 Communications Records
+All business-related electronic communications, including email, instant messages, and text messages conducted on Firm-approved platforms, must be retained for a minimum of three (3) years. Written correspondence must be retained for three (3) years from the date of the communication.
+
+3.4 Financial and Accounting Records
+General ledgers, blotters, financial statements, balance sheets, and income statements must be retained for a minimum of six (6) years.
+
+3.5 Compliance and Supervisory Records
+Written supervisory procedures (WSPs), exception reports, surveillance logs, and compliance examination records must be retained for a minimum of three (3) years following the date of the document or the conclusion of any related examination.
+
+3.6 Legal and Regulatory Correspondence
+All correspondence with the SEC, FINRA, state regulators, and other regulatory bodies, including examination reports, deficiency letters, responses, and consent orders, must be retained for a minimum of six (6) years.
+
+4. STORAGE REQUIREMENTS
+
+4.1 Electronic Records Format
+Electronic records must be stored in a format that prevents alteration after the fact. The Firm uses Write Once Read Many (WORM) compliant storage systems for all regulatory records. WORM storage must prevent any modification, overwriting, erasure, or deletion of records during the required retention period.
+
+4.2 Storage Media Standards
+Approved storage media includes optical disk (CD-ROM, DVD), magnetic disk with WORM functionality, and cloud-based storage solutions that meet SEC-approved standards. All storage solutions must be tested annually to confirm data integrity and retrievability.
+
+4.3 Backup and Redundancy
+All regulatory records must be maintained in duplicate. One copy must be stored at the Firm's primary data center and one copy must be stored at a geographically separate location or with an approved third-party storage vendor. Backups must be performed daily.
+
+4.4 Cloud Storage Vendors
+Third-party cloud storage vendors must be approved by the Technology Governance Committee and the Compliance Department prior to use for regulatory records. Vendors must demonstrate SOC 2 Type II compliance and must enter into a data services agreement that addresses regulatory access requirements.
+
+5. RECORD ACCESSIBILITY
+
+5.1 Prompt Access Requirement
+The Firm must be able to produce any retained record within a reasonable timeframe upon request by the SEC, FINRA, or other regulatory authority. For electronic records, the Firm commits to producing records within 24 hours of a regulatory request for records within the two-year accessible period.
+
+5.2 Index Maintenance
+The Firm must maintain a comprehensive index of all stored records. The index must include the record type, date range, storage location, responsible department, and destruction date. The index must be updated within five business days of any new record being archived.
+
+5.3 Audit Trail
+All access to archived records must be logged. The access log must capture the user identity, timestamp, records accessed, and reason for access. Access logs are themselves subject to the retention requirements of this policy.
+
+6. THIRD-PARTY STORAGE PROVIDERS
+
+6.1 Designated Third-Party Storage
+The Firm currently uses Iron Mountain, Inc. as its designated third-party storage provider for physical records, and AWS GovCloud as its designated cloud storage provider for electronic records.
+
+6.2 Vendor Oversight
+The Compliance Department and Technology Governance Committee must conduct annual reviews of all third-party storage vendors. Reviews must assess the vendor's financial stability, regulatory compliance posture, data security practices, and ability to meet the Firm's access requirements.
+
+6.3 Vendor Agreements
+All vendor agreements for record storage must include provisions requiring the vendor to promptly notify the Firm of any regulatory inquiry involving the Firm's records, any data breach or unauthorized access, and any material change in the vendor's ability to perform its obligations.
+
+7. RECORD DESTRUCTION
+
+7.1 Destruction Authorization
+No record may be destroyed before the expiration of its required retention period. Destruction must be authorized in writing by the department head and the Compliance Department. A destruction log must be maintained.
+
+7.2 Legal Hold
+If the Firm becomes aware of pending or threatened litigation, regulatory investigation, or any other legal matter that may require records, the relevant records must be placed on legal hold and destruction suspended indefinitely regardless of the normal retention schedule.
+
+7.3 Secure Disposal
+Physical records must be destroyed by cross-cut shredding or incineration through a certified vendor. Electronic records must be securely deleted using methods that render the data unrecoverable, such as overwriting with random data or cryptographic erasure.
+
+8. EMPLOYEE RESPONSIBILITIES
+
+8.1 General Obligation
+All employees are responsible for ensuring that records created or received in the course of their business activities are properly retained in accordance with this policy. Employees may not alter, destroy, or conceal any record in anticipation of or in response to a regulatory inquiry.
+
+8.2 Training
+All employees must complete annual records management training. New employees must complete the training within 30 days of their start date.
+
+8.3 Reporting Violations
+Suspected violations of this policy must be reported to the Compliance Department immediately. Employees who report suspected violations in good faith will not be subject to retaliation.
+
+9. CONSEQUENCES OF NON-COMPLIANCE
+
+Failure to comply with this policy may result in disciplinary action up to and including termination of employment, referral to regulatory authorities, and personal liability under applicable law. The SEC and FINRA have broad authority to impose sanctions on both the Firm and individual employees for recordkeeping violations. Civil penalties for recordkeeping violations can reach $10,000,000 per violation for the Firm and $1,000,000 per violation for individuals.
+
+10. POLICY REVIEW AND UPDATES
+
+This policy must be reviewed annually by the Compliance Department. Updates must be approved by the Chief Compliance Officer and, for material changes, by the Board of Directors. All employees must be notified of material policy changes within 30 days of adoption.
+
+11. RELATED POLICIES AND PROCEDURES
+
+- CMP-002: Customer Due Diligence and Know Your Customer Policy
+- CMP-005: Supervisory Procedures and Controls Policy
+- IT-012: Information Security and Data Governance Policy
+- LEGAL-003: Legal Hold Procedures
+
+12. DEFINITIONS
+
+WORM Storage: Write Once Read Many storage technology that prevents modification, overwriting, erasure, or deletion of stored data after the initial write.
+Regulatory Record: Any book, record, or document whose creation, maintenance, or retention is required by applicable securities laws or regulations.
+Legal Hold: A process by which the Firm suspends normal disposal of records that may be relevant to litigation, regulatory investigation, or audit.

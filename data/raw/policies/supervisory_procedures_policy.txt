@@ -1,0 +1,111 @@
+APEX FINANCIAL SERVICES, INC.
+SUPERVISORY PROCEDURES AND CONTROLS POLICY
+
+Policy Number: CMP-005
+Version: 4.0
+Effective Date: January 1, 2025
+Last Reviewed: December 15, 2024
+Owner: Chief Compliance Officer
+Approved By: Board of Directors
+
+1. PURPOSE AND SCOPE
+
+This policy establishes the Firm's written supervisory procedures (WSPs) framework in compliance with FINRA Rule 3110 (Supervision), FINRA Rule 3120 (Supervisory Control System), and SEC Rule 15c3-3. The policy applies to all registered representatives, associated persons, supervisors, and principals of Apex Financial Services, Inc.
+
+The Firm is required to establish, maintain, and enforce written procedures to supervise the types of business in which it engages and to supervise the activities of registered representatives, registered principals, and other associated persons.
+
+2. REGULATORY FRAMEWORK
+
+2.1 FINRA Rule 3110
+FINRA Rule 3110 requires each member firm to establish and maintain a system to supervise the activities of each associated person that is reasonably designed to achieve compliance with applicable securities laws and regulations and FINRA rules. The supervisory system must include the designation of qualified registered principals to supervise each type of business and the registration of branch offices.
+
+2.2 FINRA Rule 3120
+FINRA Rule 3120 requires member firms to establish, maintain, and enforce a supervisory control system to test and verify that the firm's supervisory procedures are reasonably designed to achieve compliance. The supervisory control system must include annual reports to senior management.
+
+2.3 FINRA Rule 3130
+FINRA Rule 3130 requires each member firm to have a Chief Compliance Officer (CCO) and requires the CEO to certify annually that the Firm has in place processes to establish, maintain, review, test, and modify written compliance policies and WSPs.
+
+3. SUPERVISORY HIERARCHY
+
+3.1 Designated Principals
+The Firm has designated registered principals responsible for supervising each type of business activity. A principal must be appropriately licensed for the business activity being supervised. The list of designated principals and their supervisory responsibilities is maintained by the Compliance Department.
+
+3.2 Branch Office Supervision
+Each branch office must have a designated on-site supervisor who holds the appropriate principal license. The on-site supervisor is responsible for supervising the day-to-day activities of all registered representatives assigned to that location.
+
+3.3 Office of Supervisory Jurisdiction
+Offices of Supervisory Jurisdiction (OSJs) must be staffed by appropriately licensed principals. Each OSJ is responsible for supervising the registered representatives assigned to it and all branch offices within its geographic territory.
+
+4. SUPERVISION OF REGISTERED REPRESENTATIVES
+
+4.1 New Representative Supervision
+New registered representatives must be subject to heightened supervision for a minimum of 90 days following their registration. Heightened supervision includes review of all transactions, daily report review, and weekly supervisory check-ins.
+
+4.2 Review of Customer Accounts
+Designated supervisors must conduct regular reviews of customer accounts to identify any unusual activity, unsuitable recommendations, or concentration concerns. Account reviews must be documented in the firm's supervisory tracking system.
+
+4.3 Review of Transactions
+All transactions must be reviewed by a designated supervisor at the time of execution or promptly thereafter. The supervisor must review the transaction for suitability, compliance with customer instructions, and compliance with applicable regulations.
+
+4.4 Correspondence Review
+All outgoing written and electronic communications with customers must be reviewed and approved by a principal prior to use, or reviewed promptly after use for correspondence that does not require pre-approval. Electronic correspondence surveillance must cover all Firm-approved communication channels.
+
+5. SUPERVISION OF TRADING ACTIVITIES
+
+5.1 Best Execution
+Supervisors must review the Firm's order routing and execution practices regularly to ensure the Firm is providing best execution for customer orders. The Firm must conduct an annual best execution review across all order routing venues.
+
+5.2 Front Running and Market Manipulation
+Supervisors must monitor for potential front running, insider trading, and market manipulation through the Firm's automated surveillance systems. Exception reports must be reviewed and documented daily.
+
+5.3 Short Selling Compliance
+Supervisors must ensure compliance with SEC Regulation SHO requirements, including locate and close-out requirements. Daily short sale reports must be reviewed by a designated principal.
+
+5.4 Options Supervision
+Options trading must be supervised by a Registered Options Principal (ROP). The ROP must review all new options accounts for approval, review options activity for suitability, and review any strategies involving complex or multi-leg options.
+
+6. SUPERVISORY CONTROL SYSTEM
+
+6.1 Annual Testing
+The Firm must conduct annual testing of its supervisory procedures to confirm they are reasonably designed to achieve compliance. Testing must be conducted by personnel who are independent of the supervisory function being tested.
+
+6.2 Annual Report
+A written report summarizing the results of the annual supervisory control testing must be submitted to senior management. The report must identify any deficiencies found during testing and the corrective actions taken.
+
+6.3 CEO Certification
+The CEO must certify annually, pursuant to FINRA Rule 3130, that the processes in place to establish, maintain, review, test, and modify the Firm's compliance policies and supervisory procedures are reasonably designed to achieve compliance.
+
+7. OUTSIDE BUSINESS ACTIVITIES AND PRIVATE SECURITIES TRANSACTIONS
+
+7.1 Disclosure Requirement
+All registered representatives must disclose to the Firm any outside business activities (OBAs) in writing before engaging in such activities. Supervisors must review and approve or disapprove each OBA disclosure.
+
+7.2 Private Securities Transactions
+Registered representatives are prohibited from participating in private securities transactions without prior written notice to the Firm and approval by a principal. Approved private securities transactions must be supervised as if they were transactions of the Firm.
+
+8. CUSTOMER COMPLAINTS
+
+8.1 Complaint Receipt and Logging
+All customer complaints must be logged in the Firm's complaint tracking system within one business day of receipt. A designated compliance officer must be notified of all written complaints.
+
+8.2 Complaint Review
+A designated supervisor must review each complaint and conduct an investigation within 10 business days. The outcome of the investigation must be documented and communicated to the customer.
+
+8.3 Regulatory Reporting
+Complaints that allege theft, misappropriation, forgery, or other serious violations must be immediately escalated to the Compliance Department for determination of whether regulatory reporting is required.
+
+9. SUPERVISION OF FINANCIAL ADVISORS' COMMUNICATIONS
+
+9.1 Social Media
+All use of social media platforms for business purposes must comply with the Firm's Social Media Policy and FINRA Rule 2210. Static content must be pre-approved by a principal. Interactive content must be supervised and archived.
+
+9.2 Seminar and Public Appearances
+Registered representatives who conduct investment seminars or make public appearances must obtain prior approval from a principal. All materials used must be reviewed and approved.
+
+10. RECORDKEEPING OF SUPERVISORY ACTIVITIES
+
+All supervisory reviews, approvals, and exception reports must be documented and retained in accordance with CMP-001 (Records Retention and Management Policy) for a minimum of three years. The documentation must be sufficient to demonstrate that meaningful supervisory review was conducted.
+
+11. REVIEW AND UPDATE OF WSPs
+
+The Compliance Department must review and update the Firm's written supervisory procedures at minimum annually, and whenever there is a material change in applicable regulations, the Firm's business activities, or supervisory structure. Updated WSPs must be distributed to all affected personnel within 30 days of adoption.
