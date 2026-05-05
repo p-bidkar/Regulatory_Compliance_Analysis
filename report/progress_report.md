@@ -70,7 +70,7 @@ RegComply is a Python package built with a src-layout under the package name reg
 
 ### 3.2 Data Pipeline
 
-Raw regulatory and policy documents are stored as plain text files under data/raw/. The ingest layer normalizes whitespace and removes trailing artifacts. The chunking layer splits normalized text at paragraph boundaries, accumulates paragraphs into chunks not exceeding 1,500 characters, and carries a 150-character overlap into the start of each subsequent chunk to preserve cross-boundary context. Each chunk is assigned a stable identifier, a section path, and a source document ID, which are stored as metadata in the vector index.
+Raw regulatory and policy documents are stored as plain text files under data/raw/. The ingest layer normalizes whitespace and removes trailing artifacts. The chunking layer splits normalized text at paragraph boundaries, accumulates paragraphs into chunks not exceeding 2,000 characters, and carries a 200-character overlap into the start of each subsequent chunk to preserve cross-boundary context. Each chunk is assigned a stable identifier, a section path, and a source document ID, which are stored as metadata in the vector index.
 
 Policy documents are embedded using sentence-transformers/all-MiniLM-L6-v2, a 22-million-parameter bi-encoder model that runs locally without any API dependency. Embeddings are stored in a persistent ChromaDB collection on disk using the LlamaIndex vector store abstraction. This design ensures that potentially sensitive policy text is never transmitted to an external service during the retrieval phase.
 
@@ -80,7 +80,7 @@ Agent 1 receives the full text of the baseline and updated regulation versions. 
 
 ### 3.4 Agent 2: Policy RAG
 
-Agent 2 takes the change items produced by Agent 1 and constructs a retrieval query for each high-impact change by concatenating the change summary with the updated regulatory text excerpt. It executes semantic search against the ChromaDB policy index using the same MiniLM embedding model used during indexing. The top-k results (currently k equals six) are deduplicated by chunk ID and returned as a ranked list with similarity scores.
+Agent 2 takes the change items produced by Agent 1 and constructs a retrieval query for each detected change by concatenating the change summary with the updated regulatory text excerpt (truncated to 300 characters). It executes semantic search against the ChromaDB policy index using the same MiniLM embedding model used during indexing. The top-k results (currently k equals six) are deduplicated by chunk ID and returned as a ranked list with similarity scores.
 
 ### 3.5 Agent 3: Recommendations
 
