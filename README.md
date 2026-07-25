@@ -11,6 +11,7 @@
 [![LlamaIndex](https://img.shields.io/badge/LlamaIndex-RAG-000000?style=flat-square)](https://www.llamaindex.ai/)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20Store-FF6F00?style=flat-square)](https://www.trychroma.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Demo%20UI-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-Academic%20Project-lightgrey?style=flat-square)]()
 
 </div>
@@ -30,11 +31,14 @@
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
+- [Running with Docker](#running-with-docker)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [Evaluation](#evaluation)
 - [Current Results](#current-results)
 - [Roadmap](#roadmap)
 - [Limitations](#limitations)
+- [Changelog](#changelog)
 - [References](#references)
 
 ---
@@ -145,6 +149,8 @@ flowchart TD
 - **Provider-agnostic LLM adapter** — targets any OpenAI-compatible endpoint (currently configured for NVIDIA NIM-hosted models).
 - **Citation verification gate** — a concrete, programmatic anti-hallucination check, not just a prompt instruction.
 - **Idempotent indexing** — rebuilding the policy index replaces the collection instead of duplicating chunks.
+- **Schema-validated agent output** — every LLM response is validated against a Pydantic schema before use; malformed items are dropped and logged individually instead of silently discarding the whole response.
+- **Fair retrieval across changes** — policy chunks are selected round-robin across all detected regulatory changes, so one change with strong matches cannot crowd out evidence for the others within the fixed retrieval budget.
 
 ---
 
@@ -158,8 +164,10 @@ flowchart TD
 | Vector store | [ChromaDB](https://www.trychroma.com/) |
 | Embeddings | `sentence-transformers/all-MiniLM-L6-v2` (local, no API call) |
 | LLM interface | OpenAI-compatible client (`openai` SDK) — targets NVIDIA NIM |
+| Validation | [Pydantic](https://docs.pydantic.dev/) — schema validation for all LLM-generated structured output |
 | UI | [Streamlit](https://streamlit.io/) |
 | Config | `python-dotenv` |
+| Containerization | [Docker](https://www.docker.com/) + Docker Compose |
 | Lint | [ruff](https://docs.astral.sh/ruff/) |
 
 ---
@@ -177,19 +185,30 @@ Termination_Project/
 │   ├── chunking/split.py         # Paragraph-boundary chunker
 │   ├── index/build.py            # ChromaDB + LlamaIndex index builder
 │   ├── llm.py                    # OpenAI-compatible LLM adapter
+│   ├── schemas.py                # Pydantic schemas for validating LLM output
 │   ├── agents/
 │   │   ├── change_detection.py   # Agent 1
-│   │   ├── policy_rag.py         # Agent 2
+│   │   ├── policy_rag.py         # Agent 2 (fair round-robin retrieval)
 │   │   └── recommendations.py    # Agent 3 + citation gate
 │   ├── graph/
 │   │   ├── state.py              # Shared PipelineState
 │   │   └── build.py              # LangGraph wiring + timing instrumentation
-│   └── eval/                     # Evaluation harness (in progress)
-├── data/raw/
-│   ├── regulations/               # Baseline / updated regulation pairs
-│   └── policies/                  # Internal policy corpus (synthetic)
+│   └── eval/
+│       ├── gold.py               # Gold-set loader
+│       ├── metrics.py            # recall@k, citation accuracy
+│       └── run.py                # Evaluation harness runner
+├── data/
+│   ├── raw/
+│   │   ├── regulations/           # Baseline / updated regulation pairs
+│   │   └── policies/              # Internal policy corpus (synthetic)
+│   └── eval/
+│       └── gold_set.json         # Evaluation gold-set (document-level labels)
 ├── report/
 │   └── progress_report.md        # Full project progress report
+├── Dockerfile                     # Container image definition
+├── docker-compose.yml             # One-command local orchestration
+├── docker-entrypoint.sh           # Auto-builds index on first container run
+├── CHANGELOG.md                   # Log of notable changes
 └── pyproject.toml
 ```
 
@@ -251,6 +270,46 @@ Open the printed local URL (typically `http://localhost:8501`) in your browser.
 
 ---
 
+## Running with Docker
+
+If you have Docker and Docker Compose installed, this is the fastest path to a working instance — no manual virtual environment or index build required.
+
+### Prerequisites
+- Docker + Docker Compose
+- Several GB of free disk space (Python ML dependencies are large)
+- A `.env` file with your LLM credentials (see [Configuration](#configuration))
+
+### Run it
+
+```bash
+cp .env.example .env   # fill in your credentials first
+docker compose up --build
+```
+
+Open `http://localhost:8501`.
+
+On first start, the container automatically builds the policy index if none exists yet — no separate step needed. The index and the downloaded embedding model are persisted in named Docker volumes, so subsequent restarts are fast.
+
+### Other useful commands
+
+```bash
+# Rebuild the policy index manually inside the container
+docker compose run --rm regcomply python scripts/build_index.py
+
+# Run the evaluation harness inside the container
+docker compose run --rm regcomply python -m regcomply.eval
+
+# Stop containers (keeps the persisted index)
+docker compose down
+
+# Stop and also wipe the persisted index + model cache
+docker compose down -v
+```
+
+> Your `.env` file is never baked into the image — it's excluded via `.dockerignore` and loaded at container runtime instead.
+
+---
+
 ## Usage
 
 1. Select a **baseline** and **updated** regulation file from the sidebar.
@@ -276,6 +335,28 @@ Open the printed local URL (typically `http://localhost:8501`) in your browser.
 
 ---
 
+## Evaluation
+
+A working evaluation harness computes retrieval and citation metrics against a gold set:
+
+```bash
+python -m regcomply.eval
+```
+
+For each labeled case in `data/eval/gold_set.json`, it runs the full pipeline and reports:
+
+| Metric | What it measures |
+|---|---|
+| Recall (document-level) | Whether the correct internal policy documents were retrieved for each regulatory change |
+| Citation accuracy | Fraction of generated recommendations whose quoted policy text was verified against its source chunk |
+| Stage timings | Per-agent latency (change detection, policy RAG, recommendations) |
+
+A single case failing (missing files, missing credentials, an LLM error) is reported individually and does not stop the rest of the evaluation run.
+
+> The current gold set labels are at the **document level**, not chunk level — a practical starting point, not the full labeled evaluation corpus described in the [Roadmap](#roadmap). Chunk-level labeling requires manual domain review and remains tracked future work.
+
+---
+
 ## Current Results
 
 As of the last evaluation checkpoint, running the full pipeline against a SEC Rule 17a-4 amendment pair with four synthetic internal policies:
@@ -285,13 +366,17 @@ As of the last evaluation checkpoint, running the full pipeline against a SEC Ru
 - Structured recommendations generated with citation verification status
 - End-to-end latency: **~20-90 seconds**, depending on model choice
 
-These are demo-scale observations, not formal accuracy metrics. See [Roadmap](#roadmap) below.
+These are demo-scale observations from a single run, not a substitute for the metrics computed by the [evaluation harness](#evaluation). See [Roadmap](#roadmap) below for remaining evaluation work.
 
 ---
 
 ## Roadmap
 
-- [ ] Formal evaluation harness — recall@k, citation accuracy, latency across a labeled test set
+- [x] Evaluation harness skeleton — recall (document-level), citation accuracy, and per-stage latency, runnable via `python -m regcomply.eval`
+- [x] Schema-validated agent output — malformed LLM responses are caught and logged instead of silently discarded
+- [x] Fair retrieval across detected changes — round-robin allocation instead of a single global score cutoff
+- [x] Containerized deployment via Docker + Docker Compose
+- [ ] Chunk-level (not just document-level) gold labels for retrieval evaluation
 - [ ] Expand corpus to 5-10 historical SEC/FINRA amendment pairs
 - [ ] Hybrid retrieval (BM25 + dense) for acronym-heavy legal text
 - [ ] Cross-encoder reranking
@@ -309,6 +394,12 @@ See [`report/progress_report.md`](report/progress_report.md) for the full timeli
 - The regulation and policy corpus is **synthetic** and small-scale; it is not a substitute for real legal review.
 - No automated test suite yet.
 - The system produces **drafts for human review**; always verify citations and recommendations before updating any real policy.
+
+---
+
+## Changelog
+
+Notable changes are tracked in [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
