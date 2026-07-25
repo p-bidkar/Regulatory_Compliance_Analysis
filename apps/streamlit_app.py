@@ -10,7 +10,10 @@ REG_DIR = Path(__file__).parent.parent / "data" / "raw" / "regulations"
 
 st.set_page_config(page_title="regcomply", layout="wide")
 st.title("regcomply")
-st.caption(f"v{__version__} | Multi-agent regulatory compliance analysis")
+st.caption(
+    f"v{__version__} | Multi-agent regulatory compliance analysis | "
+    "Drafts for human review only — not legal advice"
+)
 
 with st.sidebar:
     st.header("Configuration")
@@ -130,5 +133,9 @@ if run_btn:
                     f"`{cit.get('chunk_id', '')}` "
                     f"({cit.get('source_doc_id', '')})"
                 )
+        timings = result.get("timings") or {}
+        if timings:
+            st.subheader("Stage timings (seconds)")
+            st.json(timings)
         st.subheader("Raw pipeline output")
         st.json(result)

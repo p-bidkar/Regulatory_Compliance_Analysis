@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -7,6 +8,8 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 from regcomply.graph.state import PipelineState
+
+logger = logging.getLogger(__name__)
 
 _INDEX_DIR = Path(__file__).parent.parent.parent.parent / "chroma_db"
 _EMBED_MODEL = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -46,6 +49,10 @@ def run(state: PipelineState) -> dict[str, Any]:
     index = _load_index()
 
     if index is None:
+        logger.warning(
+            "policy_rag: no index at %s; run scripts/build_index.py first",
+            _INDEX_DIR,
+        )
         return {"retrieved_chunks": []}
 
     retriever = index.as_retriever(similarity_top_k=_TOP_K)

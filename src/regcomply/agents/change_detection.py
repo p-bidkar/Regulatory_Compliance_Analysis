@@ -1,8 +1,11 @@
 import json
+import logging
 from typing import Any
 
 from regcomply.graph.state import PipelineState
 from regcomply.llm import chat_json
+
+logger = logging.getLogger(__name__)
 
 _SYSTEM = """You are a regulatory compliance analyst. You receive two versions of a financial regulation: a baseline version and an updated version. Your task is to identify every substantive change between them.
 
@@ -41,7 +44,11 @@ Identify all substantive changes between the baseline and updated versions."""
     try:
         data = json.loads(raw)
         change_items = data.get("change_items", [])
-    except (json.JSONDecodeError, KeyError):
+        if not isinstance(change_items, list):
+            logger.warning("change_detection: change_items is not a list")
+            change_items = []
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        logger.warning("change_detection: failed to parse model JSON (%s)", exc)
         change_items = []
 
     return {"change_items": change_items}

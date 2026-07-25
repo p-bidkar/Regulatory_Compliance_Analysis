@@ -13,8 +13,8 @@ def chunk_by_sections(
     text: str,
     source_doc_id: str,
     *,
-    max_chars: int = 2000,
-    overlap: int = 200,
+    max_chars: int = 1500,
+    overlap: int = 150,
 ) -> list[Chunk]:
     parts = text.split("\n\n")
     chunks: list[Chunk] = []

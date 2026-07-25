@@ -8,13 +8,19 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from regcomply.chunking.split import Chunk
 
 _EMBED_MODEL = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
+_COLLECTION = "policies"
 
 
 def build_policy_index(chunks: list[Chunk], persist_dir: str | Path) -> None:
     path = Path(persist_dir)
     path.mkdir(parents=True, exist_ok=True)
     client = chromadb.PersistentClient(path=str(path))
-    collection = client.get_or_create_collection("policies")
+    # Replace the collection so re-runs do not accumulate duplicate documents.
+    try:
+        client.delete_collection(_COLLECTION)
+    except Exception:
+        pass
+    collection = client.get_or_create_collection(_COLLECTION)
     store = ChromaVectorStore(chroma_collection=collection)
     ctx = StorageContext.from_defaults(vector_store=store)
     documents = [

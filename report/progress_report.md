@@ -54,7 +54,7 @@ RAG was introduced as a technique to ground LLM outputs in retrieved evidence, r
 
 ### 2.3 Multi-Agent Systems
 
-Multi-agent frameworks allow complex tasks to be decomposed into specialized sub-agents that operate sequentially or in parallel. LangGraph provides a directed graph abstraction over LangChain primitives, enabling explicit state passing between agent nodes with built-in support for conditional branching, human-in-the-loop hooks, and checkpointing. This project uses LangGraph to wire three specialized agents into a linear pipeline, where each agent writes to a shared PipelineState TypedDict and passes the enriched state to the next node.
+Multi-agent frameworks allow complex tasks to be decomposed into specialized sub-agents that operate sequentially or in parallel. LangGraph provides a directed graph abstraction over LangChain primitives, with optional support for conditional branching, human-in-the-loop hooks, and checkpointing. The current RegComply implementation uses LangGraph as a linear three-node pipeline with shared PipelineState; branching, human-in-the-loop review, and checkpointing are planned for later work rather than present in the current code.
 
 ### 2.4 Evaluation Challenges
 
@@ -70,7 +70,7 @@ RegComply is a Python package built with a src-layout under the package name reg
 
 ### 3.2 Data Pipeline
 
-Raw regulatory and policy documents are stored as plain text files under data/raw/. The ingest layer normalizes whitespace and removes trailing artifacts. The chunking layer splits normalized text at paragraph boundaries, accumulates paragraphs into chunks not exceeding 2,000 characters, and carries a 200-character overlap into the start of each subsequent chunk to preserve cross-boundary context. Each chunk is assigned a stable identifier, a section path, and a source document ID, which are stored as metadata in the vector index.
+Raw regulatory and policy documents are stored as plain text files under data/raw/. The ingest layer normalizes whitespace and removes trailing artifacts. The chunking layer splits normalized text at paragraph boundaries, accumulates paragraphs into chunks not exceeding 1,500 characters, and carries a 150-character overlap into the start of each subsequent chunk to preserve cross-boundary context. Each chunk is assigned a stable identifier, a section path, and a source document ID, which are stored as metadata in the vector index. Rebuilding the policy index replaces the existing ChromaDB collection so duplicate chunks are not accumulated across runs.
 
 Policy documents are embedded using sentence-transformers/all-MiniLM-L6-v2, a 22-million-parameter bi-encoder model that runs locally without any API dependency. Embeddings are stored in a persistent ChromaDB collection on disk using the LlamaIndex vector store abstraction. This design ensures that potentially sensitive policy text is never transmitted to an external service during the retrieval phase.
 
@@ -84,7 +84,7 @@ Agent 2 takes the change items produced by Agent 1 and constructs a retrieval qu
 
 ### 3.5 Agent 3: Recommendations
 
-Agent 3 receives both the change items and the retrieved policy chunks. It calls the LLM with a structured prompt instructing it to produce a JSON array of policy update recommendations, each grounded in a specific retrieved chunk. Each recommendation must include the policy document name, priority level, the regulatory section driving the change, the verbatim current policy text that requires revision, the recommended replacement language, a rationale, and the chunk ID of the supporting evidence. A programmatic citation gate then verifies that the quoted current policy text appears verbatim in the referenced chunk, marking each citation as verified or unverified.
+Agent 3 receives both the change items and the retrieved policy chunks. It calls the LLM with a structured prompt instructing it to produce a JSON array of policy update recommendations, each grounded in a specific retrieved chunk. Each recommendation must include the policy document name, priority level, the regulatory section driving the change, the verbatim current policy text that requires revision, the recommended replacement language, a rationale, and the chunk ID of the supporting evidence. A programmatic citation gate then verifies that the quoted current policy text appears in the referenced chunk after whitespace normalization, marking each citation as verified or unverified.
 
 ### 3.6 LLM Adapter
 
@@ -92,7 +92,7 @@ All LLM calls are routed through a single llm.py adapter module that reads endpo
 
 ### 3.7 Orchestration
 
-The three agents are wired as nodes in a LangGraph StateGraph with a shared PipelineState TypedDict. The graph is compiled once per session and cached. Execution flows linearly: change detection, then policy RAG, then recommendations, then END. The pipeline is invoked through a single run_pipeline function that accepts an initial state and returns the fully populated output state.
+The three agents are wired as nodes in a LangGraph StateGraph with a shared PipelineState TypedDict. The graph is compiled once per session and cached. Execution flows linearly: change detection, then policy RAG, then recommendations, then END. Each stage records elapsed seconds into the shared timings field. The pipeline is invoked through a single run_pipeline function that accepts an initial state and returns the fully populated output state.
 
 ---
 
@@ -104,7 +104,7 @@ The current evaluation corpus consists of one regulatory amendment pair and four
 
 **Regulatory pair:** SEC Rule 17a-4 (baseline pre-2026 version versus the March 2026 amendment). The amendment introduces five substantive changes: extension of electronic communications retention from three to five years, new mandatory cloud storage certification requirements (FedRAMP Moderate or equivalent), new geographic separation requirement for duplicate copies (minimum 100 miles), new cybersecurity incident notification obligation (24 hours to the Commission), and a new real-time audit trail requirement effective September 2026.
 
-**Policy corpus:** Records Retention and Management Policy (CMP-001), Anti-Money Laundering and Know Your Customer Policy (CMP-002), Supervisory Procedures and Controls Policy (CMP-005), and Information Security and Data Governance Policy (IT-012). These four documents total approximately 400 pages of realistic compliance policy text, yielding 31 indexed chunks after normalization and chunking.
+**Policy corpus:** Records Retention and Management Policy (CMP-001), Anti-Money Laundering and Know Your Customer Policy (CMP-002), Supervisory Procedures and Controls Policy (CMP-005), and Information Security and Data Governance Policy (IT-012). These four synthetic documents total approximately 36 KB of compliance-style policy text (about 490 lines), yielding on the order of 30 indexed chunks after normalization and chunking. Expanding to a larger, page-scale corpus remains planned future work.
 
 ### 4.2 Results on Current Corpus
 
