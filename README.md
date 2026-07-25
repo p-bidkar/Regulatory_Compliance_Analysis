@@ -83,22 +83,17 @@ RegComply wires **three specialized AI agents** into a [LangGraph](https://githu
 
 ```mermaid
 flowchart LR
-    subgraph Offline["Offline: Index Build"]
-        P[Policy .txt files] --> N1[Normalize]
-        N1 --> C1[Chunk by section]
-        C1 --> E1[Embed - MiniLM]
-        E1 --> V[(ChromaDB)]
-    end
+    P[Policy text files] --> N1[Normalize]
+    N1 --> C1[Chunk by section]
+    C1 --> E1[Embed with MiniLM]
+    E1 --> V[(ChromaDB)]
 
-    subgraph Online["Online: Pipeline Run"]
-        R1[Baseline regulation] --> A1
-        R2[Updated regulation] --> A1
-        A1["Agent 1 - Change Detection"] --> A2
-        V -.retrieve.-> A2
-        A2["Agent 2 - Policy RAG"] --> A3
-        A3["Agent 3 - Recommendations + Citation Gate"] --> UI
-        UI["Streamlit Demo"]
-    end
+    R1[Baseline regulation] --> A1[Agent 1: Change Detection]
+    R2[Updated regulation] --> A1
+    A1 --> A2[Agent 2: Policy RAG]
+    V --> A2
+    A2 --> A3[Agent 3: Recommendations and Citation Gate]
+    A3 --> UI[Streamlit Demo]
 ```
 
 | Stage | Agent | Responsibility |
