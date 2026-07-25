@@ -1,0 +1,14 @@
+{
+  "description": "Skeleton evaluation gold set for RegComply. Labels are at the source-document level (which internal policy document should be retrieved for a given regulatory change pair), not yet at the individual chunk level. Chunk-level gold labels require manual legal/domain review and are tracked as remaining work in report/progress_report.md (May-June 2026 plan). This file exists so `python -m regcomply.eval` has at least one real, runnable case instead of a stub.",
+  "cases": [
+    {
+      "regulation_id": "sec_17a4",
+      "baseline_path": "data/raw/regulations/sec_17a4_baseline.txt",
+      "updated_path": "data/raw/regulations/sec_17a4_updated.txt",
+      "expected_relevant_docs": [
+        "records_retention_policy",
+        "data_governance_policy"
+      ]
+    }
+  ]
+}
