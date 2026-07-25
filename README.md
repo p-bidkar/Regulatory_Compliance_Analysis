@@ -108,30 +108,36 @@ Every stage timing is recorded and every LLM parsing failure is logged rather th
 
 ## Architecture
 
-```
-+-------------------------------------------------------------------+
-|                         Streamlit Demo UI                          |
-|        Changes | Retrieved Chunks | Recommendations | Citations    |
-+-----------------------------------+---------------------------------+
-                                    |
-                       +------------v-------------+
-                       |   LangGraph StateGraph    |
-                       |   (PipelineState shared)  |
-                       +------------+-------------+
-        +---------------------------+---------------------------+
-        v                           v                           v
-+---------------+        +--------------------+       +------------------------+
-| Change         |        | Policy RAG         |       | Recommendations         |
-| Detection      |------->| (LlamaIndex +      |------>| + Citation Gate          |
-| (LLM diff)     |        |  ChromaDB)         |       | (LLM + verbatim check)   |
-+---------------+        +--------------------+       +------------------------+
-        |                           ^
-        v                           |
-+-------------------------------------+
-|   OpenAI-compatible LLM Adapter      |
-|   (provider-agnostic, strips         |
-|    <think> reasoning blocks)         |
-+---------------------------------------+
+```mermaid
+flowchart TD
+    UI["Streamlit Demo UI\nChanges | Chunks | Recommendations | Citations"]
+
+    subgraph Pipeline["LangGraph Pipeline — shared PipelineState"]
+        direction LR
+        A1["Agent 1\nChange Detection"]
+        A2["Agent 2\nPolicy RAG"]
+        A3["Agent 3\nRecommendations + Citation Gate"]
+        A1 --> A2 --> A3
+    end
+
+    DB[("ChromaDB\nVector Store")]
+    LLM[("LLM Adapter\nOpenAI-compatible")]
+
+    UI --> A1
+    A3 --> UI
+    DB --> A2
+    A1 <--> LLM
+    A3 <--> LLM
+
+    classDef ui fill:#FF4B4B,stroke:#7a1f1f,color:#fff,stroke-width:1px;
+    classDef agent fill:#3B6FE0,stroke:#1c3c6e,color:#fff,stroke-width:1px;
+    classDef store fill:#FF6F00,stroke:#803700,color:#fff,stroke-width:1px;
+    classDef llm fill:#10A37F,stroke:#0b6b55,color:#fff,stroke-width:1px;
+
+    class UI ui;
+    class A1,A2,A3 agent;
+    class DB store;
+    class LLM llm;
 ```
 
 **Key design choices:**
