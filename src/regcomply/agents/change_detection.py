@@ -4,6 +4,7 @@ from typing import Any
 
 from regcomply.graph.state import PipelineState
 from regcomply.llm import chat_json
+from regcomply.schemas import parse_change_items
 
 logger = logging.getLogger(__name__)
 
@@ -43,12 +44,16 @@ Identify all substantive changes between the baseline and updated versions."""
 
     try:
         data = json.loads(raw)
-        change_items = data.get("change_items", [])
-        if not isinstance(change_items, list):
-            logger.warning("change_detection: change_items is not a list")
-            change_items = []
+        raw_items = data.get("change_items", [])
     except (json.JSONDecodeError, KeyError, TypeError) as exc:
         logger.warning("change_detection: failed to parse model JSON (%s)", exc)
-        change_items = []
+        raw_items = []
+
+    change_items = parse_change_items(raw_items)
+    if raw_items and not change_items:
+        logger.warning(
+            "change_detection: all %d change item(s) failed schema validation",
+            len(raw_items),
+        )
 
     return {"change_items": change_items}
