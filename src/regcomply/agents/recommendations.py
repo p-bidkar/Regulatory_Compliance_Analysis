@@ -5,6 +5,7 @@ from typing import Any
 
 from regcomply.graph.state import PipelineState
 from regcomply.llm import chat_json
+from regcomply.schemas import parse_recommendations
 
 logger = logging.getLogger(__name__)
 
@@ -73,13 +74,17 @@ Generate specific policy update recommendations for each high and critical impac
 
     try:
         data = json.loads(raw)
-        recs = data.get("recommendations", [])
-        if not isinstance(recs, list):
-            logger.warning("recommendations: recommendations is not a list")
-            recs = []
+        raw_recs = data.get("recommendations", [])
     except (json.JSONDecodeError, KeyError, TypeError) as exc:
         logger.warning("recommendations: failed to parse model JSON (%s)", exc)
-        recs = []
+        raw_recs = []
+
+    recs = parse_recommendations(raw_recs)
+    if raw_recs and not recs:
+        logger.warning(
+            "recommendations: all %d recommendation(s) failed schema validation",
+            len(raw_recs),
+        )
 
     citations = []
     chunk_map = {c["chunk_id"]: c for c in retrieved_chunks}

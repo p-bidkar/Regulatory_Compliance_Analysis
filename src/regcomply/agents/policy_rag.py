@@ -31,17 +31,33 @@ def _load_index():
     return _index_cache
 
 
-def _build_queries(change_items: list[dict]) -> list[str]:
-    queries = []
-    for item in change_items:
+def _build_queries(change_items: list[dict]) -> list[tuple[int, str]]:
+    """Return (change_index, query_text) pairs so retrieval can be attributed
+    back to the change that produced it, enabling fair allocation across
+    changes instead of a single global top-k cutoff."""
+    queries: list[tuple[int, str]] = []
+    for idx, item in enumerate(change_items):
         parts = []
         if item.get("summary"):
             parts.append(item["summary"])
         if item.get("updated_text"):
             parts.append(item["updated_text"][:300])
         if parts:
-            queries.append(" ".join(parts))
-    return queries if queries else ["regulatory compliance recordkeeping electronic storage"]
+            queries.append((idx, " ".join(parts)))
+    if not queries:
+        queries = [(0, "regulatory compliance recordkeeping electronic storage")]
+    return queries
+
+
+def _node_to_chunk(node) -> dict[str, Any]:
+    chunk_id = node.metadata.get("chunk_id", node.node_id)
+    return {
+        "chunk_id": chunk_id,
+        "source_doc_id": node.metadata.get("source_doc_id", ""),
+        "section_path": node.metadata.get("section_path", ""),
+        "text": node.get_content(),
+        "score": round(float(node.score) if node.score is not None else 0.0, 4),
+    }
 
 
 def run(state: PipelineState) -> dict[str, Any]:
@@ -58,23 +74,44 @@ def run(state: PipelineState) -> dict[str, Any]:
     retriever = index.as_retriever(similarity_top_k=_TOP_K)
     queries = _build_queries(change_items)
 
-    seen_ids: set[str] = set()
-    retrieved_chunks: list[dict[str, Any]] = []
+    # Retrieve candidates per change, keeping the highest-scoring version of
+    # any chunk_id that multiple changes happen to retrieve.
+    per_change_candidates: list[list[dict[str, Any]]] = []
+    best_chunk_by_id: dict[str, dict[str, Any]] = {}
 
-    for query in queries:
+    for _change_idx, query in queries:
         nodes = retriever.retrieve(query)
-        for node in nodes:
-            chunk_id = node.metadata.get("chunk_id", node.node_id)
-            if chunk_id in seen_ids:
-                continue
-            seen_ids.add(chunk_id)
-            retrieved_chunks.append({
-                "chunk_id": chunk_id,
-                "source_doc_id": node.metadata.get("source_doc_id", ""),
-                "section_path": node.metadata.get("section_path", ""),
-                "text": node.get_content(),
-                "score": round(float(node.score) if node.score is not None else 0.0, 4),
-            })
+        candidates = [_node_to_chunk(node) for node in nodes]
+        per_change_candidates.append(candidates)
+        for chunk in candidates:
+            existing = best_chunk_by_id.get(chunk["chunk_id"])
+            if existing is None or chunk["score"] > existing["score"]:
+                best_chunk_by_id[chunk["chunk_id"]] = chunk
+
+    # Round-robin across changes so a handful of high-scoring duplicates from
+    # one change cannot crowd out every other change's evidence within the
+    # fixed top-k budget.
+    selected_ids: set[str] = set()
+    retrieved_chunks: list[dict[str, Any]] = []
+    cursors = [0] * len(per_change_candidates)
+
+    progressed = True
+    while len(retrieved_chunks) < _TOP_K and progressed:
+        progressed = False
+        for change_idx, candidates in enumerate(per_change_candidates):
+            if len(retrieved_chunks) >= _TOP_K:
+                break
+            cursor = cursors[change_idx]
+            while cursor < len(candidates):
+                candidate = candidates[cursor]
+                cursor += 1
+                if candidate["chunk_id"] in selected_ids:
+                    continue
+                selected_ids.add(candidate["chunk_id"])
+                retrieved_chunks.append(best_chunk_by_id[candidate["chunk_id"]])
+                progressed = True
+                break
+            cursors[change_idx] = cursor
 
     retrieved_chunks.sort(key=lambda x: x["score"], reverse=True)
     return {"retrieved_chunks": retrieved_chunks[:_TOP_K]}
