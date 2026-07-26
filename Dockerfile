@@ -23,12 +23,12 @@ COPY scripts ./scripts
 COPY data ./data
 COPY report ./report
 
-RUN mkdir -p /app/chroma_db /app/.hf_cache
+RUN mkdir -p /app/chroma_db /app/.hf_cache /app/data
 
-EXPOSE 8501
+EXPOSE 8000
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["streamlit", "run", "apps/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+CMD ["uvicorn", "regcomply.api.app:app", "--host", "0.0.0.0", "--port", "8000"]

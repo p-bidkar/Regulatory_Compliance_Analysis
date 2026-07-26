@@ -13,3 +13,6 @@ chroma_db/
 *.pdf
 *.docx
 *.zip
+frontend/node_modules/
+frontend/.next/
+data/jobs.db
