@@ -44,3 +44,15 @@ def run_pipeline(state: PipelineState) -> PipelineState:
     app = build_graph()
     out = app.invoke(state)
     return out  # type: ignore[return-value]
+
+
+def stream_pipeline(state: PipelineState):
+    """Yield (node_name, partial_state) as each pipeline stage completes.
+
+    Lets callers (e.g. the API's background job runner) report real
+    stage-by-stage progress instead of a single opaque "running" status.
+    """
+    app = build_graph()
+    for update in app.stream(state, stream_mode="updates"):
+        for node_name, node_output in update.items():
+            yield node_name, node_output
